@@ -1,0 +1,32 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+.admin-root * {
+  font-family: "Ubuntu", sans-serif !important;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+.admin-root {
+  background: #f3f3f6;
+  min-height: 100vh;
+  color: #111111;
+}
+
+.admin-root input,
+.admin-root select,
+.admin-root textarea {
+  color: #111111 !important;
+  background: #ffffff !important;
+}
+
+.admin-root p,
+.admin-root h1,
+.admin-root h2,
+.admin-root h3,
+.admin-root h4,
+.admin-root span,
+.admin-root td,
+.admin-root th,
+.admin-root label {
+  color: inherit !important;
+}
