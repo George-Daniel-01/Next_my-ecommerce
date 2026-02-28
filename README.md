@@ -275,4 +275,4 @@ Pull requests are welcome! Please open an issue first to discuss what you would 
 
 ## 📄 License
 
-MIT License
+Daniel
