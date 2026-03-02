@@ -161,3 +161,40 @@ export const resetPassword = createAsyncThunk("auth/resetPassword", async ({ tok
 
 export const updateProfile = updateAdminProfile;
 export const updatePassword = updateAdminPassword;
+// Aliases for store frontend components
+export const register = createAsyncThunk("auth/register", async (data, thunkAPI) => {
+  try {
+    const res = await axiosInstance.post("/auth/register", data);
+    toast.success(res.data.message);
+    thunkAPI.dispatch(toggleAuthPopup());
+    return res.data.user;
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Registration failed.");
+    return thunkAPI.rejectWithValue(error.response?.data?.message);
+  }
+});
+
+export const forgotPassword = createAsyncThunk("auth/forgotPassword", async (data, thunkAPI) => {
+  try {
+    const res = await axiosInstance.post("/auth/password/forgot", data);
+    toast.success(res.data.message);
+    return true;
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Failed.");
+    return thunkAPI.rejectWithValue(error.response?.data?.message);
+  }
+});
+
+export const resetPassword = createAsyncThunk("auth/resetPassword", async ({ token, data }, thunkAPI) => {
+  try {
+    const res = await axiosInstance.put(`/auth/password/reset/${token}`, data);
+    toast.success(res.data.message);
+    return true;
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Failed.");
+    return thunkAPI.rejectWithValue(error.response?.data?.message);
+  }
+});
+
+export const updateProfile = updateAdminProfile;
+export const updatePassword = updateAdminPassword;
