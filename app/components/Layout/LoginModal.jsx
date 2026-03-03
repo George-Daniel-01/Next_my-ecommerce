@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { X, Mail, Lock, User } from "lucide-react";
@@ -11,7 +11,7 @@ const LoginModal = () => {
   const dispatch = useDispatch();
   const pathname = usePathname();
 
-  const { authUser, isSigningUp, isLoggingIn, isRequestingForToken } = useSelector((state) => state.auth);
+  const { user, isSigningUp, isLoggingIn, isRequestingForToken } = useSelector((state) => state.auth);
   const { isAuthPopupOpen } = useSelector((state) => state.popup);
 
   const [mode, setMode] = useState("signin"); // signin | signup | forgot | reset
@@ -72,14 +72,14 @@ const LoginModal = () => {
     // BUG FIX: Clear form after successful dispatch (use useEffect instead)
   };
 
-  // BUG FIX: Clear form when authUser changes (successful login/register)
+  // BUG FIX: Clear form when user changes (successful login/register)
   useEffect(() => {
-    if (authUser) {
+    if (user) {
       setFormData({ name: "", email: "", password: "", confirmPassword: "" });
     }
-  }, [authUser]);
+  }, [user]);
 
-  if (!isAuthPopupOpen || authUser) return null;
+  if (!isAuthPopupOpen || user) return null;
 
   // BUG FIX: Use const instead of let for isLoading
   const isLoading = isSigningUp || isLoggingIn || isRequestingForToken;
